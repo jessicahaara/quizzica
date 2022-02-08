@@ -3,7 +3,7 @@ import { useState } from "react"
 import Storyblok from "../lib/storyblok"
 import { GetData, QuizStory, Params } from "../types"
 import Question from "../components/Question"
-import { useAppContext } from "../context/global-context"
+import { useAppContext } from "../context/globalContext"
 import Link from "next/link"
 
 const Quiz: NextPage<{ story: QuizStory }> = ({ story }) => {

@@ -34,7 +34,7 @@ export const GlobalContext = ({ children }: Props) => {
     setId(id)
   }
 
-  const setQuizQuestions = () => {
+  const setQuizQuestions = (questions: Question[]) => {
     setQuestions(questions)
   }
 

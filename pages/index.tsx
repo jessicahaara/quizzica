@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css"
 import Storyblok from "../lib/storyblok"
 import { GetData, Story } from "../types"
 import Link from "next/link"
-import { useAppContext } from "../context/global-context"
+import { useAppContext } from "../context/globalContext"
 import React, { useState } from "react"
 
 const Home: NextPage<{ stories: Story[] }> = ({ stories }) => {
