@@ -1,0 +1,199 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.square {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45vw;
+  height: 32vw;
+  border: 4px double var(--light-blue);
+  animation: scaleSquare 0.5s;
+}
+
+.square2 {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75vw;
+  height: 75vw;
+  border: 4px double var(--light-blue);
+  transform: rotate(45deg);
+  animation: rotateSquare 1s;
+}
+
+.timer {
+  width: 4vw;
+  height: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px double var(--light-blue);
+  position: relative;
+  top: 94%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--bg-color);
+  z-index: 1;
+  transform: rotate(45deg);
+  overflow: hidden;
+}
+
+.timer p {
+  color: white;
+  font-size: 1.5vw;
+  transform: rotate(-45deg);
+}
+
+/* .timerBar {
+  background-color: var(--light-blue);
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  top: -4vw;
+  left: -4vw;
+  transform: rotate(-45deg);
+} */
+
+.lightBlue {
+  color: var(--light-blue);
+  border-color: var(--light-blue);
+}
+
+.yellow {
+  color: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.red {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.square h3 {
+  width: 6vw;
+  position: relative;
+  top: -22%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--bg-color);
+  z-index: 1;
+  animation: questionOpacity 0.5s;
+}
+
+.grid {
+  margin-top: 40px;
+  width: 40vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1vw;
+  margin-left: auto;
+  margin-right: auto;
+  animation: questionOpacity 1s;
+}
+
+.container h2 {
+  max-width: 40vw;
+  /* font-size: 1.3vw; */
+  margin-left: auto;
+  margin-right: auto;
+  animation: questionOpacity 1s;
+}
+
+.option {
+  width: 100%;
+  height: 7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5vw;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.option:nth-child(3n + 1) {
+  background-color: var(--light-blue);
+  border: 3px solid white;
+}
+
+.option:nth-child(3n + 1):hover {
+  background-color: white;
+  outline: 2px solid var(--light-blue);
+  outline-offset: -5px;
+  color: var(--light-blue);
+}
+
+.option:nth-child(2) {
+  background-color: var(--red);
+  border: 3px solid white;
+}
+
+.option:nth-child(2):hover {
+  background-color: white;
+  outline: 2px solid var(--red);
+  outline-offset: -5px;
+  color: var(--red);
+}
+
+.option:nth-child(3) {
+  background-color: var(--yellow);
+  border: 3px solid white;
+}
+
+.option:nth-child(3):hover {
+  background-color: white;
+  outline: 2px solid var(--yellow);
+  outline-offset: -5px;
+  color: var(--yellow);
+}
+
+.border {
+  width: 40vw;
+  height: 25px;
+  margin: 40px auto 0 auto;
+  border: 2px solid var(--light-blue);
+  overflow: hidden;
+}
+
+.progress {
+  position: relative;
+  left: -40vw;
+  height: 100%;
+  width: 40vw;
+  background-color: var(--light-blue);
+  transition: transform 1s;
+}
+
+@keyframes scaleSquare {
+  0% {
+    transform: scale(1, 1.333);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes questionOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

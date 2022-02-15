@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.userAnswer {
+  color: var(--red);
+  border: 2px solid var(--light-blue);
+}
+
+.rightAnswer {
+  color: var(--light-blue);
+}
+
+.rightAnswer::after {
+  content: '  \2713';
+}

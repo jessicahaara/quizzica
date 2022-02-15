@@ -1,10 +1,11 @@
-import { GetServerSideProps, NextPage } from "next"
-import { useState } from "react"
-import { useAppContext } from "../context/globalContext"
-import { Results } from "../types"
-import QuestionResult from "../components/QuestionResult"
-import TopList from "../components/TopList"
-import ResultStyles from "../styles/Results.module.css"
+import { GetServerSideProps, NextPage } from 'next'
+import { useState } from 'react'
+import { useAppContext } from '../context/globalContext'
+import { Results } from '../types'
+import QuestionResult from '../components/QuestionResult'
+import TopList from '../components/TopList'
+import ResultStyles from '../styles/Results.module.css'
+import Heading from '../components/Heading'
 
 interface Props {
   results: Results[]
@@ -27,38 +28,47 @@ const Results: NextPage<Props> = ({ results, quiz }) => {
   }
 
   return (
-    <div>
-      <h2>Resultat för {activeUser.name}</h2>
-      <p>Du fick {activeUser.points} poäng!</p>
+    <div className={ResultStyles.container}>
+      <div className={ResultStyles.square}>
+        <Heading type="h1">
+          Du fick <br />
+          {activeUser.points} poäng!
+        </Heading>
+        <p
+          className={ResultStyles.dropDown}
+          onClick={() => setShowQuestions(!showQuestions)}
+        >
+          Frågor
+          <span className={ResultStyles.arrow}>▼</span>
+        </p>
+        {showQuestions ? (
+          <div className={ResultStyles.scrollDiv}>
+            {questions.map((question, index) => (
+              <div key={question._uid}>
+                <QuestionResult question={question} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          ''
+        )}
 
-      <h2 onClick={() => setShowQuestions(!showQuestions)}>
-        Frågor
-        <span className={ResultStyles.arrow}>▼</span>
-      </h2>
-      {showQuestions ? (
-        <div>
-          {questions.map((question, index) => (
-            <div key={question._uid}>
-              <h3>Fråga {index + 1}</h3>
-              <QuestionResult question={question} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        ""
-      )}
-
-      <h2 onClick={() => setShowTopList(!showTopList)}>
-        Topplista {quiz}
-        <span className={ResultStyles.arrow}>▼</span>
-      </h2>
-      {showTopList ? (
-        <div>
-          <TopList list={topList} id={id} />
-        </div>
-      ) : (
-        ""
-      )}
+        <p
+          className={ResultStyles.dropDown}
+          onClick={() => setShowTopList(!showTopList)}
+        >
+          Topplista {quiz}
+          <span className={ResultStyles.arrow}>▼</span>
+        </p>
+        {showTopList ? (
+          <div className={ResultStyles.scrollDiv}>
+            <TopList list={topList} id={id} />
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
+      <div className={ResultStyles.square2}></div>
     </div>
   )
 }

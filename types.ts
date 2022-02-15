@@ -63,6 +63,7 @@ export interface Question {
     question:  string;
     component: string;
     answer?: string
+    points?: number
 }
 
 export interface Option {

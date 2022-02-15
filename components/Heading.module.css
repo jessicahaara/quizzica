@@ -1,0 +1,42 @@
+.h1,
+.h2 {
+  color: white;
+  font-family: 'Krona One', sans-serif;
+  margin: 0;
+}
+
+.h1 {
+  font-size: 10vw;
+  letter-spacing: 0.2rem;
+  text-shadow: -9px 9px 0px var(--light-blue),
+    -8.75px 8.75px 0px var(--light-blue), -8.5px 8.5px 0px var(--light-blue),
+    -8.25px 8.25px 0px var(--light-blue), -7px 7px 0px var(--light-blue),
+    -7.75px 7.75px 0px var(--light-blue), -7.5px 7.5px 0px var(--light-blue),
+    -7.25px 7.25px 0px var(--light-blue), -7px 7px 0px var(--light-blue),
+    -6.75px 6.75px 0px var(--light-blue), -6.5px 6.5px 0px var(--light-blue),
+    -6.25px 6.25px 0px var(--light-blue), -6px 6px 0px var(--light-blue),
+    -5.75px 5.75px 0px var(--light-blue), -5.5px 5.5px 0px var(--light-blue),
+    -5.25px 5.25px 0px var(--light-blue), -5px 5px 0px var(--light-blue),
+    -4.75px 4.75px 0px var(--light-blue), -4.5px 4.5px 0px var(--light-blue),
+    -4.25px 4.25px 0px var(--light-blue), -4px 4px 0px var(--light-blue),
+    -3.75px 3.75px 0px var(--light-blue), -3.5px 3.5px 0px var(--light-blue),
+    -3.25px 3.25px 0px var(--light-blue), -3px 3px 0px var(--light-blue),
+    -2.75px 2.75px 0px var(--light-blue), -2.5px 2.5px 0px var(--light-blue),
+    -2.25px 2.25px 0px var(--light-blue), -2px 2px 0px var(--light-blue),
+    -1.75px 1.75px 0px var(--light-blue), -1.5px 1.5px 0px var(--light-blue),
+    -1.25px 1.25px 0px var(--light-blue), -1px 1px 0px var(--light-blue),
+    -0.75px 0.75px 0px var(--light-blue), -0.5px 0.5px 0px var(--light-blue),
+    -0.25px 0.25px 0px var(--light-blue);
+}
+
+.h2 {
+  font-size: 1.8vw;
+}
+
+.h3 {
+  font-size: 1.5vw;
+}
+
+.h4 {
+  font-size: 1.1vw;
+}

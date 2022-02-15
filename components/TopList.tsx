@@ -1,6 +1,7 @@
-import { FunctionComponent } from "react"
-import ResultsStyles from "../styles/Results.module.css"
-import { Results } from "../types"
+import { FunctionComponent } from 'react'
+import TopListStyles from './TopList.module.css'
+import { Results } from '../types'
+import Heading from './Heading'
 
 interface Props {
   list: Results[]
@@ -9,10 +10,10 @@ interface Props {
 
 const TopList: FunctionComponent<Props> = ({ list, id }) => {
   return (
-    <div>
+    <div className={TopListStyles.container}>
       {list.map((listItem, index) => (
         <p
-          className={id === listItem.id ? ResultsStyles.current : ""}
+          className={id === listItem.id ? TopListStyles.current : ''}
           key={listItem.id}
         >
           {index + 1}. {listItem.name}, {listItem.points} poäng.

@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: inputAnimation 2s;
+}
+
+.form label {
+  position: relative;
+  top: 45px;
+  transition: 0.3s ease-in;
+}
+
+.form input {
+  width: 44vw;
+  height: 50px;
+  border: none;
+  border-bottom: 4px double var(--light-blue);
+  background-color: transparent;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: 'Krona One', sans-serif;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: var(--yellow);
+}
+
+.form:focus-within label {
+  font-size: 0.9rem;
+  top: 0;
+}
+
+.buttonDiv {
+  height: 60px;
+}
+
+@keyframes inputAnimation {
+  0% {
+    transform: scale(0);
+  }
+
+  70% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,8 +1,63 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h1 {
+  font-size: 4.5vw;
+}
+
+.dropDown {
+  cursor: pointer;
+  align-self: center;
+  width: 50%;
+  padding: 10px;
+  font-size: 1.5vw;
+  border-bottom: 3px double var(--light-blue);
+  transition: 0.2s ease-in;
+}
+
+.dropDown:hover {
+  transform: translateY(-5px);
+}
+
 .arrow {
+  margin-left: 20px;
+  font-size: 15px;
+}
+.scrollDiv {
+  height: 50%;
+  overflow-y: scroll;
+  transition: 1s ease-in;
 }
 
-.rightAnswer {
+.square {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50vw;
+  height: 50vw;
+  border: 4px double var(--light-blue);
 }
 
-.userAnswer {
+.square2 {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75vw;
+  height: 75vw;
+  border: 4px double var(--light-blue);
+  transform: rotate(45deg);
+}
+
+@keyframes openScrollDiv {
+  0% {
+  }
 }

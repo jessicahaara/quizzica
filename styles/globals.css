@@ -1,15 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Oswald:wght@400;600&display=swap');
+
+:root {
+  --bg-color: #373e98;
+  --light-blue: #aed9e0;
+  --red: #f16775;
+  --yellow: #fbd87f;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--bg-color);
+  text-align: center;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+  overflow: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
+
+/* p {
+  font-family: 'Prompt', sans-serif;
+} */
 
 * {
   box-sizing: border-box;
