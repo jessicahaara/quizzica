@@ -56,8 +56,3 @@
   border: 4px double var(--light-blue);
   transform: rotate(45deg);
 }
-
-@keyframes openScrollDiv {
-  0% {
-  }
-}
