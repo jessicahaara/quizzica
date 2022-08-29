@@ -5,6 +5,8 @@
   --light-blue: #aed9e0;
   --red: #f16775;
   --yellow: #fbd87f;
+
+  --double-border: 4px double var(--light-blue);
 }
 
 html,

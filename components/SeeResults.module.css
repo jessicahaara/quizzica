@@ -5,12 +5,18 @@
   align-items: center;
 }
 
+.content {
+  height: 25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .container p {
-  width: 10vw;
-  padding: 1vw;
-  margin: 7vw 0 5vw 0;
-  font-size: 1.5vw;
-  border: 3px double var(--light-blue);
+  padding: 20px 30px;
+  font-size: 2vmax;
+  border: var(--double-border);
   cursor: pointer;
   transition: 0.3s ease-in;
 }
@@ -18,4 +24,11 @@
 .container p:hover {
   background-color: white;
   color: var(--light-blue);
+}
+
+@media screen and (max-width: 800px) {
+  .content {
+    height: 80vw;
+    width: 75vw;
+  }
 }

@@ -1,4 +1,3 @@
-import exp from "constants"
 import { ParsedUrlQuery } from "querystring"
 
 export interface GetData {
@@ -38,22 +37,9 @@ export interface Story {
     translated_slugs:   null;
 }
 
-export interface QuizStory extends Story{
-    content: QuizContent;
-}
-
 export interface Content {
     _uid:      string;
-    question?: Question[];
-    component: string;
-    text?:     string;
-    title?:    string;
-    text_2?:   string;
-}
-
-export interface QuizContent {
-    _uid:      string;
-    question: Question[];
+    question:  Question[];
     component: string;
 }
 
@@ -119,4 +105,5 @@ export interface globalContextType {
     name:   string;
     points: number;
     id:     string;
+    correctAnswers: number;
   }

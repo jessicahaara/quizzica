@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
 import Storyblok from '../lib/storyblok'
-import { GetData, QuizStory, Params } from '../types'
+import { GetData, Story, Params } from '../types'
 import Question from '../components/Question'
 import { useAppContext } from '../context/globalContext'
 
-const Quiz: NextPage<{ story: QuizStory }> = ({ story }) => {
+const Quiz: NextPage<{ story: Story }> = ({ story }) => {
   const [questionIndex, setQuestionIndex] = useState<number>(0)
 
   const questions = story.content.question
@@ -21,10 +21,26 @@ const Quiz: NextPage<{ story: QuizStory }> = ({ story }) => {
     return points
   }
 
+  const correctAnswers = (): number => {
+    let correct = 0
+    questions.forEach((question) => {
+      const [rightOption] = question.options.filter(
+        (option) => option.right_answer
+      )
+      const rightAnswer = rightOption.option_value
+      if (question.answer === rightAnswer) {
+        correct++
+      }
+    })
+
+    return correct
+  }
+
   const answerQuestion = async (
     chosenOption: string,
     seconds: number
   ): Promise<void> => {
+    questions[questionIndex].answer = chosenOption
     const [rightAnswer] = questions[questionIndex].options.filter(
       (option) => option.right_answer
     )
@@ -72,7 +88,11 @@ const Quiz: NextPage<{ story: QuizStory }> = ({ story }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          send: { name, points: countPoints() },
+          send: {
+            name,
+            points: countPoints(),
+            correctAnswers: correctAnswers(),
+          },
         }),
       })
 
@@ -111,7 +131,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   let { data }: GetData = await Storyblok.get('cdn/stories/')
 
-  const stories = data.stories.filter((story) => story.slug !== 'home')
+  const stories = data.stories
 
   return {
     paths: stories.map((story) => {

@@ -1,15 +1,21 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, MutableRefObject, useEffect, useRef } from 'react'
 import Heading from './Heading'
-import ChooseQuizStyles from './ChooseQuiz.module.css'
+import styles from './chooseQuiz.module.css'
 import Link from 'next/link'
+import { gsap } from 'gsap'
 
 interface Props {
-  title: string
-  quizStories: string[]
-  text: string
+  quizTopics: string[]
 }
 
-const ChooseQuiz: FunctionComponent<Props> = ({ title, quizStories, text }) => {
+const ChooseQuiz: FunctionComponent<Props> = ({ quizTopics }) => {
+  const categoryGrid = useRef() as MutableRefObject<HTMLDivElement>
+  const categoryBox = gsap.utils.selector(categoryGrid)
+
+  useEffect(() => {
+    gsap.from(categoryBox('div'), { duration: 1, scale: 0, stagger: 0.3 })
+  })
+
   let colorNumber = -1
   const colors = ['lightBlue', 'red', 'yellow']
   const setColor = () => {
@@ -21,22 +27,23 @@ const ChooseQuiz: FunctionComponent<Props> = ({ title, quizStories, text }) => {
   }
 
   return (
-    <div className={ChooseQuizStyles.content}>
-      <Heading type="h1">{title}</Heading>
-      <p>{text}</p>
+    <div className={styles.container}>
+      <Heading type="h1">QUIZZICA</Heading>
+      <Heading type="h3">Välj kategori</Heading>
+      <p className={styles.text}>
+        Kommer förmodligen gå lika dåligt vilken du än väljer
+      </p>
 
-      <div className={ChooseQuizStyles.grid}>
-        {quizStories.map((story, index) => {
+      <div className={styles.grid} ref={categoryGrid}>
+        {quizTopics.map((topic, index) => {
           setColor()
 
           return (
-            <Link href={`/${story.toLowerCase()}`} key={index}>
+            <Link href={`/${topic.toLowerCase()}`} key={index}>
               <div
-                className={`${ChooseQuizStyles.container} ${
-                  ChooseQuizStyles[colors[colorNumber]]
-                }`}
+                className={`${styles.gridBox} ${styles[colors[colorNumber]]}`}
               >
-                <p>{story}</p>
+                <p>{topic}</p>
               </div>
             </Link>
           )

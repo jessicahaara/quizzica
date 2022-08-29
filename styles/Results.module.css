@@ -7,27 +7,37 @@
 }
 
 .container h1 {
-  font-size: 4.5vw;
+  font-size: 4vmax;
+  animation: pointsScale 1.5s;
+  margin: 10px 0 20px 0;
+}
+
+.container h2 {
+  animation: pointsScale 0.5s;
 }
 
 .dropDown {
   cursor: pointer;
   align-self: center;
   width: 50%;
+  min-width: px;
   padding: 10px;
-  font-size: 1.5vw;
-  border-bottom: 3px double var(--light-blue);
+  font-size: 2vmax;
+  border-bottom: var(--double-border);
   transition: 0.2s ease-in;
+  animation: dropDownOpacity 2s;
 }
 
 .dropDown:hover {
-  transform: translateY(-5px);
+  transform: scale(1.1);
+  color: var(--light-blue);
 }
 
 .arrow {
   margin-left: 20px;
   font-size: 15px;
 }
+
 .scrollDiv {
   height: 50%;
   overflow-y: scroll;
@@ -39,9 +49,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50vw;
+  width: 45vw;
   height: 50vw;
-  border: 4px double var(--light-blue);
+  border: var(--double-border);
+  animation: squareTransform 0.5s;
 }
 
 .square2 {
@@ -53,6 +64,71 @@
   margin-right: auto;
   width: 75vw;
   height: 75vw;
-  border: 4px double var(--light-blue);
+  border: var(--double-border);
   transform: rotate(45deg);
+  animation: squareRotate 1s;
+}
+
+@media screen and (max-width: 800px) {
+  .square {
+    position: fixed;
+    width: 80vw;
+    height: 130vw;
+    top: 50%;
+    left: 50%;
+    margin-top: -65vw;
+    margin-left: -40vw;
+    animation: none;
+  }
+  .square2 {
+    position: fixed;
+    width: 130vw;
+    height: 130vw;
+    top: 50%;
+    left: 50%;
+    margin-top: -65vw;
+    margin-left: -65vw;
+  }
+}
+
+@keyframes squareTransform {
+  0% {
+    transform: scaleY(0.76);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes squareRotate {
+  0% {
+    transform: rotate(-45deg);
+  }
+
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes pointsScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dropDownOpacity {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

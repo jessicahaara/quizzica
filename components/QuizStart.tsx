@@ -1,35 +1,30 @@
 import Heading from './Heading'
 import NameForm from './NameForm'
 import { FunctionComponent } from 'react'
-import QuizStartStyles from './QuizStart.module.css'
+import styles from './quizStart.module.css'
 
 interface Props {
-  title: string
-  text: string
   setInputName: (inputName: string) => void
   inputName: string
   startQuiz: (event: React.FormEvent) => void
 }
 
 const QuizStart: FunctionComponent<Props> = ({
-  title,
-  text,
   setInputName,
   inputName,
   startQuiz,
 }) => {
   return (
-    <>
-      <div className={QuizStartStyles.textContent}>
-        <Heading type="h2">{text}</Heading>
-        <Heading type="h1">{title}</Heading>
-      </div>
+    <div className={styles.container}>
+      <Heading type="h2">Sveriges tråkigaste frågesport</Heading>
+      <Heading type="h1"></Heading>
+
       <NameForm
         setInputName={setInputName}
         inputName={inputName}
         startQuiz={startQuiz}
       />
-    </>
+    </div>
   )
 }
 

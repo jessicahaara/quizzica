@@ -1,25 +1,16 @@
-import { FunctionComponent, ReactNode } from 'react'
-import HeadingStyle from './Heading.module.css'
+import { FunctionComponent, LegacyRef, ReactNode } from 'react'
+import style from './heading.module.css'
 
 interface Props {
   type: 'h1' | 'h2' | 'h3' | 'h4'
-  color?: string
-  children: ReactNode
+  children?: ReactNode
 }
 
-const Heading: FunctionComponent<Props> = ({
-  type,
-  children,
-  color,
-  ...props
-}) => {
+const Heading: FunctionComponent<Props> = ({ type, children, ...props }) => {
   const Component = type ? type : 'h2'
 
   return (
-    <Component
-      className={`${HeadingStyle[type]} ${color ? HeadingStyle[color] : ''}`}
-      {...props}
-    >
+    <Component className={style[type]} {...props}>
       {children}
     </Component>
   )

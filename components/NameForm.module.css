@@ -7,21 +7,22 @@
 
 .form label {
   position: relative;
-  top: 45px;
+  top: 3vmax;
   transition: 0.3s ease-in;
+  font-size: 1.5vmax;
+  order: 1;
 }
 
 .form input {
-  width: 44vw;
-  height: 50px;
+  width: 40vw;
   border: none;
-  border-bottom: 4px double var(--light-blue);
+  border-bottom: var(--double-border);
   background-color: transparent;
   color: white;
-  font-size: 2rem;
-  margin-bottom: 40px;
+  font-size: 2.5vmax;
   text-align: center;
   font-family: 'Krona One', sans-serif;
+  order: 2;
 }
 
 .form input:focus {
@@ -29,13 +30,27 @@
   border-color: var(--yellow);
 }
 
-.form:focus-within label {
-  font-size: 0.9rem;
+.form:focus-within label,
+.form input:valid ~ label {
+  transform: scale(0.7);
   top: 0;
 }
 
+.form button {
+  margin-top: 1.5rem;
+  order: 3;
+}
+
 .buttonDiv {
+  margin-top: 1.5rem;
+  order: 3;
   height: 60px;
+}
+
+@media screen and (max-width: 800px) {
+  .form input {
+    width: 85vw;
+  }
 }
 
 @keyframes inputAnimation {

@@ -1,8 +1,15 @@
-import { FunctionComponent, useState, useEffect } from 'react'
+import {
+  FunctionComponent,
+  useState,
+  useEffect,
+  useRef,
+  MutableRefObject,
+} from 'react'
 import { Question } from '../types'
 import Heading from './Heading'
-import QuestionStyles from './Question.module.css'
+import styles from './question.module.css'
 import SeeResults from './SeeResults'
+import { gsap } from 'gsap'
 
 interface Props {
   question: Question
@@ -21,6 +28,14 @@ const Question: FunctionComponent<Props> = ({
 }) => {
   const [seeResults, setSeeResults] = useState<boolean>(false)
   const [timeLeft, setTimeLeft] = useState<number>(20)
+  const [animate, setAnimate] = useState<number>(0)
+
+  const tl = gsap.timeline()
+
+  const questionGrid = useRef() as MutableRefObject<HTMLDivElement>
+  const optionBox = gsap.utils.selector(questionGrid)
+  const questionDiv = useRef() as MutableRefObject<HTMLDivElement>
+  const questionHeading = gsap.utils.selector(questionDiv)
 
   useEffect(() => {
     if (!timeLeft) {
@@ -29,6 +44,7 @@ const Question: FunctionComponent<Props> = ({
         setSeeResults(true)
         return
       }
+      setAnimate(animate + 1)
       setTimeLeft(20)
       return
     }
@@ -40,11 +56,25 @@ const Question: FunctionComponent<Props> = ({
     return () => clearInterval(interval)
   }, [timeLeft])
 
+  useEffect(() => {
+    tl.from(questionHeading('h3, h2'), {
+      duration: 0.3,
+      y: -20,
+    })
+    tl.from(optionBox('div'), {
+      duration: 0.3,
+      opacity: 0,
+      y: -10,
+      stagger: 0.2,
+    })
+  }, [animate])
+
   const percent = !seeResults ? (index / questionAmount) * 100 : 100
 
   const sendResult = (option: string): void => {
     answerQuestion(option, timeLeft)
     setTimeLeft(20)
+    setAnimate(animate + 1)
     if (index + 1 === questionAmount) {
       setSeeResults(true)
     }
@@ -60,18 +90,22 @@ const Question: FunctionComponent<Props> = ({
       timerColor = 'red'
       break
     default:
+      timerColor = 'lightBlue'
       break
   }
 
   return (
-    <div className={QuestionStyles.container}>
+    <div className={styles.container}>
       {!seeResults ? (
-        <>
-          <Heading type="h2">{question.question}</Heading>
-          <div className={QuestionStyles.grid}>
+        <div className={styles.questionDiv}>
+          <div ref={questionDiv}>
+            <Heading type="h2">Fråga {index + 1}</Heading>
+            <Heading type="h3">{question.question}</Heading>
+          </div>
+          <div className={styles.grid} ref={questionGrid}>
             {question.options.map((option) => (
               <div
-                className={QuestionStyles.option}
+                className={styles.option}
                 key={option._uid}
                 onClick={() => sendResult(option.option_value)}
               >
@@ -79,30 +113,28 @@ const Question: FunctionComponent<Props> = ({
               </div>
             ))}
           </div>
-        </>
+        </div>
       ) : (
         <SeeResults storySlug={storySlug} />
       )}
-      <div className={QuestionStyles.border}>
+      <div className={styles.border}>
         <div
-          className={QuestionStyles.progress}
+          className={styles.progress}
           style={{ transform: `translateX(${percent}%)` }}
           role="progressbar"
         ></div>
       </div>
-      <div className={QuestionStyles.square}>
+
+      <div className={styles.square}>
         {!seeResults && (
           <>
-            <div
-              className={`${QuestionStyles.timer} ${QuestionStyles[timerColor]}`}
-            >
+            <div className={`${styles.timer} ${styles[timerColor]}`}>
               <p>{timeLeft}</p>
             </div>
-            <Heading type="h3">Fråga {index + 1}</Heading>
           </>
         )}
       </div>
-      <div className={QuestionStyles.square2}></div>
+      <div className={styles.square2}></div>
     </div>
   )
 }

@@ -1,12 +1,18 @@
-.content h1 {
-  font-size: 4.5vw;
+.container h1 {
+  font-size: 5vmax;
   margin-bottom: 4vh;
   animation: quizzicaAnimation 1s;
 }
 
-.content p {
-  font-size: 1.5vw;
-  animation: textAnimation 1s;
+.container h3 {
+  font-size: 2.5vmax;
+}
+
+.text {
+  font-size: 1.8vmax;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .grid {
@@ -16,18 +22,18 @@
   grid-gap: 1vw;
   margin-left: auto;
   margin-right: auto;
-  animation: textAnimation 1s;
+  overflow-y: scroll;
 }
 
-.container {
+.gridBox {
   width: 100%;
   height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1vw;
   text-transform: uppercase;
   cursor: pointer;
+  font-size: 2vmax;
 }
 
 .red {
@@ -64,6 +70,19 @@
   outline: 2px solid var(--light-blue);
   outline-offset: -5px;
   color: var(--light-blue);
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    margin-top: 10vh;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    width: 60vw;
+  }
+  .gridBox {
+    height: 8vh;
+  }
 }
 
 @keyframes quizzicaAnimation {

@@ -1,6 +1,6 @@
 import SquareButton from '../components/SquareButton'
 import { FunctionComponent } from 'react'
-import NameFormStyles from './NameForm.module.css'
+import styles from './nameForm.module.css'
 
 interface Props {
   inputName: string
@@ -14,21 +14,23 @@ const NameForm: FunctionComponent<Props> = ({
   startQuiz,
 }) => {
   return (
-    <form onSubmit={startQuiz} className={NameFormStyles.form}>
-      <label htmlFor="name">DITT JÄVLA NAMN</label>
+    <form onSubmit={startQuiz} className={styles.form}>
       <input
         type="text"
         id="name"
+        name="name"
         onChange={(e) => setInputName(e.target.value)}
         value={inputName}
         required
         autoComplete="off"
+        placeholder=" "
       />
+      <label htmlFor="name">DITT JÄVLA NAMN</label>
 
       {inputName.length > 0 ? (
-        <SquareButton>&#8600;</SquareButton>
+        <SquareButton>↘&#xfe0e;</SquareButton>
       ) : (
-        <div className={NameFormStyles.buttonDiv}></div>
+        <div className={styles.buttonDiv}></div>
       )}
     </form>
   )

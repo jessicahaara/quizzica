@@ -13,8 +13,8 @@
   margin-left: auto;
   margin-right: auto;
   width: 45vw;
-  height: 32vw;
-  border: 4px double var(--light-blue);
+  height: 38vw;
+  border: var(--double-border);
   animation: scaleSquare 0.5s;
 }
 
@@ -27,9 +27,16 @@
   margin-right: auto;
   width: 75vw;
   height: 75vw;
-  border: 4px double var(--light-blue);
+  border: var(--double-border);
   transform: rotate(45deg);
   animation: rotateSquare 1s;
+}
+
+.questionDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -2vh;
 }
 
 .timer {
@@ -38,9 +45,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 4px double var(--light-blue);
+  border: var(--double-border);
   position: relative;
-  top: 94%;
+  top: 95%;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -49,26 +56,15 @@
   z-index: 1;
   transform: rotate(45deg);
   overflow: hidden;
+  color: white;
 }
 
 .timer p {
-  color: white;
-  font-size: 1.5vw;
+  font-size: 2vmax;
   transform: rotate(-45deg);
 }
 
-/* .timerBar {
-  background-color: var(--light-blue);
-  position: absolute;
-  width: 5vw;
-  height: 5vw;
-  top: -4vw;
-  left: -4vw;
-  transform: rotate(-45deg);
-} */
-
 .lightBlue {
-  color: var(--light-blue);
   border-color: var(--light-blue);
 }
 
@@ -82,45 +78,33 @@
   border-color: var(--red);
 }
 
-.square h3 {
-  width: 6vw;
-  position: relative;
-  top: -22%;
-  left: 0;
-  right: 0;
+.container h3 {
+  max-width: 40vw;
+  animation: questionOpacity 0.5s;
   margin-left: auto;
   margin-right: auto;
-  background-color: var(--bg-color);
-  z-index: 1;
-  animation: questionOpacity 0.5s;
 }
 
 .grid {
-  margin-top: 40px;
   width: 40vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1vw;
   margin-left: auto;
   margin-right: auto;
-  animation: questionOpacity 1s;
 }
 
 .container h2 {
-  max-width: 40vw;
-  /* font-size: 1.3vw; */
-  margin-left: auto;
-  margin-right: auto;
-  animation: questionOpacity 1s;
+  text-transform: uppercase;
 }
 
 .option {
   width: 100%;
-  height: 7vw;
+  height: 6.5vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5vw;
+  font-size: 2.2vmax;
   text-transform: uppercase;
   cursor: pointer;
   transition: 0.3s ease-in;
@@ -165,9 +149,10 @@
 .border {
   width: 40vw;
   height: 25px;
-  margin: 40px auto 0 auto;
   border: 2px solid var(--light-blue);
   overflow: hidden;
+  margin: 0 auto;
+  margin-top: 2vh;
 }
 
 .progress {
@@ -179,13 +164,57 @@
   transition: transform 1s;
 }
 
-@keyframes scaleSquare {
-  0% {
-    transform: scale(1, 1.333);
+@media screen and (max-width: 800px) {
+  .square {
+    position: fixed;
+    width: 80vw;
+    height: 130vw;
+    top: 50%;
+    left: 50%;
+    margin-top: -65vw;
+    margin-left: -40vw;
+    animation: scaleSquareMobile 0.5s;
+  }
+  .square2 {
+    position: fixed;
+    width: 130vw;
+    height: 130vw;
+    top: 50%;
+    left: 50%;
+    margin-top: -65vw;
+    margin-left: -65vw;
   }
 
-  100% {
-    transform: scale(1);
+  .grid {
+    grid-template-columns: 1fr;
+    width: 60vw;
+  }
+
+  .option {
+    height: 15vw;
+  }
+
+  .border {
+    width: 60vw;
+  }
+
+  .progress {
+    width: 60vw;
+    left: -60vw;
+  }
+
+  .timer {
+    top: 95.8%;
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .questionDiv {
+    margin-top: -120px;
+  }
+
+  .container h3 {
+    max-width: 70vw;
   }
 }
 
@@ -193,7 +222,28 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes scaleSquare {
+  0% {
+    transform: scale(1, 1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleSquareMobile {
+  0% {
+    transform: scale(1, 0.69);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

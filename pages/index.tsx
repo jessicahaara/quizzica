@@ -1,5 +1,5 @@
 import { NextPage, GetStaticProps } from 'next'
-import HomeStyles from '../styles/Home.module.css'
+import homeStyles from '../styles/home.module.css'
 import Storyblok from '../lib/storyblok'
 import { GetData, Story } from '../types'
 import { useAppContext } from '../context/globalContext'
@@ -8,14 +8,10 @@ import ChooseQuiz from '../components/ChooseQuiz'
 import QuizStart from '../components/QuizStart'
 
 const Home: NextPage<{ stories: Story[] }> = ({ stories }) => {
-  const [homeStory] = stories.filter((story) => story.slug === 'home')
-
   const [inputName, setInputName] = useState<string>('')
   const [showStart, setShowStart] = useState<boolean>(true)
 
-  const quizStories = stories
-    .filter((story) => story.name !== 'Home')
-    .map((story) => story.name)
+  const quizTopics = stories.map((story) => story.name)
 
   const { setUserName } = useAppContext()
 
@@ -26,33 +22,21 @@ const Home: NextPage<{ stories: Story[] }> = ({ stories }) => {
   }
 
   return (
-    <div className={HomeStyles.container}>
+    <div className={homeStyles.container}>
       {showStart ? (
         <>
           <QuizStart
-            title={homeStory.content.title ? homeStory.content.title : 'Quiz'}
-            text={
-              homeStory.content.text ? homeStory.content.text : 'Detta är ett'
-            }
             setInputName={setInputName}
             inputName={inputName}
             startQuiz={startQuiz}
           />
-          <div className={HomeStyles.square}></div>
+          <div className={homeStyles.square}></div>
         </>
       ) : (
         <>
-          <ChooseQuiz
-            title={homeStory.content.title ? homeStory.content.title : 'Quiz'}
-            text={
-              homeStory.content.text_2
-                ? homeStory.content.text_2
-                : 'Välj kategori'
-            }
-            quizStories={quizStories}
-          />
-          <div className={HomeStyles.square2}></div>
-          <div className={HomeStyles.square3}></div>
+          <ChooseQuiz quizTopics={quizTopics} />
+          <div className={homeStyles.square2}></div>
+          <div className={homeStyles.square3}></div>
         </>
       )}
     </div>
